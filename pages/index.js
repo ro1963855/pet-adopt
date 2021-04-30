@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-function Home() {
+function Home({ data }) {
   return (
     <div>
       <Head>
@@ -19,6 +19,15 @@ function Home() {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  // Fetch data from external API
+  const res = await fetch(`https://asms.coa.gov.tw/Asms/api/ViewNowAnimal?pageSize=200&currentPage=1&sortDirection=DESC&sortFields=AcceptDate`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
 }
 
 export default Home
