@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react"
-import Header from '../layouts/Header'
 import PetList from '../layouts/PetList'
 import FilterList from '../layouts/FilterList'
 
@@ -18,18 +17,15 @@ function Home({ petTotalList }) {
   const totalShowNumber = useMemo(() => petList.length, [petList])
 
   return (
-    <div>
-      <main>
-        <Header></Header>
-        <FilterList
-          petList={petTotalList}
-          handleShelterChange={setShelterSelectedOption}
-          handleTypeChange={setTypeSelectedOption}
-          handleSexChange={setSexSelectedOption}
-        ></FilterList>
-        <PetList petList={petList} totalShowNumber={totalShowNumber}></PetList>
-      </main>
-    </div>
+    <>
+      <FilterList
+        petList={petTotalList}
+        handleShelterChange={setShelterSelectedOption}
+        handleTypeChange={setTypeSelectedOption}
+        handleSexChange={setSexSelectedOption}
+      ></FilterList>
+      <PetList petList={petList} totalShowNumber={totalShowNumber}></PetList>
+    </>
   )
 }
 
