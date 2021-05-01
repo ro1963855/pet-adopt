@@ -24,7 +24,11 @@ function Home({ petTotalList }) {
         handleTypeChange={setTypeSelectedOption}
         handleSexChange={setSexSelectedOption}
       ></FilterList>
-      <PetList petList={petList} totalShowNumber={totalShowNumber}></PetList>
+      <PetList
+        petTotalList={petTotalList}
+        petList={petList}
+        totalShowNumber={totalShowNumber}
+      ></PetList>
     </>
   )
 }
