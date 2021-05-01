@@ -1,0 +1,27 @@
+.petCard {
+  &__img {
+    position: absolute;
+    object-fit: contain;
+
+    &__wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 75%;
+    }
+  }
+
+  &__info {
+    display: flex;
+    margin: 8px;
+
+    &__title {
+      flex: 0 0 auto;
+      width: 30%;
+    }
+
+    &__value {
+      flex: 0 0 auto;
+      width: 70%;
+    }
+  }
+}
