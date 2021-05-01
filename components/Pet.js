@@ -1,5 +1,5 @@
-import PetStyle from '../styles/components/Pet.module.scss'
 import Image from 'next/image'
+import PetStyle from '../styles/components/Pet.module.scss'
 
 function Pet({info}) {
   return (
@@ -47,7 +47,7 @@ function Pet({info}) {
         </div>
         <div className={`${PetStyle.pet__info}`}>
           <span className={`${PetStyle.pet__info__title}`}>
-            地點
+            收容所
           </span>
           <span className={`${PetStyle.pet__info__value}`}>
             {info.ShelterName}
