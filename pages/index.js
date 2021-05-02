@@ -1,43 +1,24 @@
-import { useState, useMemo } from "react"
+import { wrapper } from '../store/store'
+import { setPetTotalList } from '../store/pet/action'
 import PetList from '../layouts/PetList'
 import FilterList from '../layouts/FilterList'
 
-function Home({ petTotalList }) {
-  const [shelterSelectedOption, setShelterSelectedOption] = useState([])
-  const [typeSelectedOption, setTypeSelectedOption] = useState([])
-  const [sexSelectedOption, setSexSelectedOption] = useState([])
-
-  const petList = useMemo(() => (
-    [...petTotalList]
-      .filter(pet => shelterSelectedOption.length === 0 || shelterSelectedOption.findIndex((shelter) => shelter.value === pet.ShelterName) !== -1)
-      .filter(pet => typeSelectedOption.length === 0 || typeSelectedOption.findIndex((type) => type.value === pet.BreedName) !== -1)
-      .filter(pet => sexSelectedOption.length === 0 || sexSelectedOption.findIndex((sex) => sex.value === pet.SexName) !== -1)
-  ), [petTotalList, shelterSelectedOption, typeSelectedOption, sexSelectedOption])
-
-  const totalShowNumber = useMemo(() => petList.length, [petList])
-
+function Home() {
   return (
     <>
-      <FilterList
-        petList={petTotalList}
-        handleShelterChange={setShelterSelectedOption}
-        handleTypeChange={setTypeSelectedOption}
-        handleSexChange={setSexSelectedOption}
-      ></FilterList>
-      <PetList
-        petTotalList={petTotalList}
-        petList={petList}
-        totalShowNumber={totalShowNumber}
-      ></PetList>
+      <FilterList></FilterList>
+      <PetList></PetList>
     </>
   )
 }
 
-export async function getServerSideProps(context) {
-  const res = await fetch(`https://asms.coa.gov.tw/Asms/api/ViewNowAnimal?pageSize=200&currentPage=1&sortDirection=DESC&sortFields=AcceptDate`)
-  const petTotalList = await res.json()
-
-  return { props: { petTotalList } }
-}
+Home.getInitialProps = wrapper.getInitialPageProps(store => async () => {
+  const { pet } = store.getState()
+  if (pet.total.length === 0) {
+    const res = await fetch(`https://asms.coa.gov.tw/Asms/api/ViewNowAnimal?pageSize=200&currentPage=1&sortDirection=DESC&sortFields=AcceptDate`)
+    const petTotalList = await res.json()
+    store.dispatch(setPetTotalList(petTotalList))
+  }
+})
 
 export default Home

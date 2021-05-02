@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
+import { wrapper } from '../store/store'
 import Head from 'next/head'
 import Header from '../layouts/Header'
 
@@ -19,4 +20,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)
