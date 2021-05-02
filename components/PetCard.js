@@ -7,7 +7,7 @@ function PetCard({info}) {
       <div className={`${PetCardStyle.petCard__img__wrapper} bg-light`}>
         <Image
           className={`${PetCardStyle.petCard__img}`}
-          src={info.pic !== '' ? `https://asms.coa.gov.tw/AmlApp/Upload/pic/${info.pic}` : '/svg/no_image_available.svg'}
+          src={info.pic !== '' ? `https://asms.coa.gov.tw/AmlApp/Upload/pic/${info.pic.replace('.', '_org.')}` : '/svg/no_image_available.svg'}
           alt="Pet Picture"
           layout="fill"
         />

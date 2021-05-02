@@ -7,7 +7,7 @@ function PetDetail({info}) {
       <div className={`${PetDetailStyle.petDetail__img__wrapper} bg-light`}>
         <Image
           className={`${PetDetailStyle.petDetail__img}`}
-          src={info.pic !== '' ? `https://asms.coa.gov.tw/AmlApp/Upload/pic/${info.FrontImageName}` : '/svg/no_image_available.svg'}
+          src={info.FrontImageName !== '' ? `https://asms.coa.gov.tw/AmlApp/Upload/Pic/${info.FrontImageName.replace('.', '_org.')}` : '/svg/no_image_available.svg'}
           alt="Pet Picture"
           layout="fill"
         />

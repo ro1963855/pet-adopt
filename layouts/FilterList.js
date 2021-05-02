@@ -23,7 +23,7 @@ function FilterList({pet, filter, setShelterOptions, setSexOptions, setTypeOptio
   sexOptions.sort(sortSingleOptions)
 
   return (
-    <section className="container-fluid filterList mt-2">
+    <section className="container filterList mt-2">
       <div className={`row ${FilterListStyle.filterList}`}>
         <div className="col-12 col-md-4 mt-3">
           <MultiSelector
