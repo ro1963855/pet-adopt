@@ -16,7 +16,7 @@ function PetList({pet, filter}) {
   const totalShowNumber = useMemo(() => petList.length, [petList])
 
   return (
-    <section className="container-fluid petList">
+    <section className="container petList">
       <div className={`${PetListStyle.petList__counter} mt-4`}>總共：{totalShowNumber}筆資料</div>
       <div className="row">
         {petTotalList.map((petInfo) => (

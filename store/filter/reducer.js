@@ -2,8 +2,8 @@ import { filterActionTypes } from './action'
 
 const filterInitialState = {
   shelterOptions: [],
-  sexOptions: [],
   typeOptions: [],
+  sexOptions: [],
 }
 
 export default function reducer(state = filterInitialState, action) {

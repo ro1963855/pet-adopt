@@ -6,7 +6,7 @@ import FilterListStyle from '../styles/layouts/FilterList.module.scss'
 import MultiSelector from '../components/MultiSelector.js'
 import GroupMultiSelector from '../components/GroupMultiSelector.js'
 
-function FilterList({pet, setShelterOptions, setSexOptions, setTypeOptions}) {
+function FilterList({pet, filter, setShelterOptions, setSexOptions, setTypeOptions}) {
   const { total: petTotalList } = pet
   const shelterOptions = []
   const sexOptions = []
@@ -28,22 +28,25 @@ function FilterList({pet, setShelterOptions, setSexOptions, setTypeOptions}) {
         <div className="col-12 col-md-4 mt-3">
           <MultiSelector
             placeholder="選擇收容所"
-            onChange={setShelterOptions}
+            defaultValue={filter.shelterOptions}
             options={shelterOptions}
+            onChange={setShelterOptions}
           ></MultiSelector>
         </div>
         <div className="col-12 col-md-4 mt-3">
           <GroupMultiSelector
             placeholder="選擇品種"
-            onChange={setTypeOptions}
+            defaultValue={filter.typeOptions}
             groupedOptions={typeOptions}
+            onChange={setTypeOptions}
           ></GroupMultiSelector>
         </div>
         <div className="col-12 col-md-4 mt-3">
           <MultiSelector
             placeholder="選擇性別"
-            onChange={setSexOptions}
+            defaultValue={filter.sexOptions}
             options={sexOptions}
+            onChange={setSexOptions}
           ></MultiSelector>
         </div>
       </div>

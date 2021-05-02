@@ -5,8 +5,8 @@ const Select = dynamic(() => import("react-select"), {
   ssr: false,
 })
 
-function GroupMultiSelector({placeholder, onChange: parentHandleChange, groupedOptions}) {
-  const [selectedOption, setSelectedOption] = useState([])
+function GroupMultiSelector({placeholder, defaultValue, onChange: parentHandleChange, groupedOptions}) {
+  const [selectedOption, setSelectedOption] = useState(defaultValue)
 
   function handleChange(selectedOption) {
     parentHandleChange(selectedOption)
