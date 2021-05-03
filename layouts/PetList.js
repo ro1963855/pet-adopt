@@ -32,7 +32,7 @@ function PetList({pet, filter}) {
             key={petInfo.AnimalId}
           >
             <a
-              style={{display: petList.findIndex(filterPet => filterPet.AnimalId === petInfo.AnimalId ) !== -1 ? 'block' : 'none' }}
+              style={{display: petList.findIndex(filterPet => filterPet.AnimalId === petInfo.AnimalId) !== -1 ? 'block' : 'none' }}
               className="col-6 col-md-4 col-lg-3 mt-4 text-decoration-none text-dark"
             >
               <PetCard info={petInfo}></PetCard>

@@ -1,26 +1,12 @@
 import { connect } from 'react-redux'
-import { setShelterOptions, setSexOptions, setTypeOptions } from '../store/filter/action'
+import { setSelectedShelterOptions, setSelectedSexOptions, setSelectedTypeOptions } from '../store/filter/action'
 import { bindActionCreators } from 'redux'
-import useFilterHelper from '../lib/useFilterHelper'
 import FilterListStyle from '../styles/layouts/FilterList.module.scss'
 import MultiSelector from '../components/MultiSelector.js'
 import GroupMultiSelector from '../components/GroupMultiSelector.js'
 
-function FilterList({pet, filter, setShelterOptions, setSexOptions, setTypeOptions}) {
-  const { total: petTotalList } = pet
-  const shelterOptions = []
-  const sexOptions = []
-  const typeOptions = []
-  const { collectSingleOption, collectMultipleOption, sortSingleOptions } = new useFilterHelper()
-
-  petTotalList.forEach(pet => {
-    collectSingleOption(pet, shelterOptions, 'ShelterName')
-    collectSingleOption(pet, sexOptions, 'SexName')
-    collectMultipleOption(pet, typeOptions, 'TypeIdName', 'BreedName')
-  })
-
-  shelterOptions.sort(sortSingleOptions)
-  sexOptions.sort(sortSingleOptions)
+function FilterList({filter, setSelectedShelterOptions, setSelectedSexOptions, setSelectedTypeOptions}) {
+const { shelterOptions, sexOptions, typeOptions } = filter.options
 
   return (
     <section className="container filterList mt-2">
@@ -30,7 +16,7 @@ function FilterList({pet, filter, setShelterOptions, setSexOptions, setTypeOptio
             placeholder="選擇收容所"
             defaultValue={filter.shelterOptions}
             options={shelterOptions}
-            onChange={setShelterOptions}
+            onChange={setSelectedShelterOptions}
           ></MultiSelector>
         </div>
         <div className="col-12 col-md-4 mt-3">
@@ -38,7 +24,7 @@ function FilterList({pet, filter, setShelterOptions, setSexOptions, setTypeOptio
             placeholder="選擇品種"
             defaultValue={filter.typeOptions}
             groupedOptions={typeOptions}
-            onChange={setTypeOptions}
+            onChange={setSelectedTypeOptions}
           ></GroupMultiSelector>
         </div>
         <div className="col-12 col-md-4 mt-3">
@@ -46,7 +32,7 @@ function FilterList({pet, filter, setShelterOptions, setSexOptions, setTypeOptio
             placeholder="選擇性別"
             defaultValue={filter.sexOptions}
             options={sexOptions}
-            onChange={setSexOptions}
+            onChange={setSelectedSexOptions}
           ></MultiSelector>
         </div>
       </div>
@@ -56,9 +42,9 @@ function FilterList({pet, filter, setShelterOptions, setSexOptions, setTypeOptio
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setShelterOptions: bindActionCreators(setShelterOptions, dispatch),
-    setSexOptions: bindActionCreators(setSexOptions, dispatch),
-    setTypeOptions: bindActionCreators(setTypeOptions, dispatch),
+    setSelectedShelterOptions: bindActionCreators(setSelectedShelterOptions, dispatch),
+    setSelectedSexOptions: bindActionCreators(setSelectedSexOptions, dispatch),
+    setSelectedTypeOptions: bindActionCreators(setSelectedTypeOptions, dispatch),
   }
 }
 
