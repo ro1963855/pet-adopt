@@ -16,7 +16,7 @@ function Home() {
 Home.getInitialProps = wrapper.getInitialPageProps(store => async () => {
   const { pet } = store.getState()
   if (pet.total.length === 0) {
-    const res = await fetch(`https://asms.coa.gov.tw/Asms/api/ViewNowAnimal?pageSize=200&currentPage=1&sortDirection=DESC&sortFields=AcceptDate`)
+    const res = await fetch(`https://asms.coa.gov.tw/Asms/api/ViewNowAnimal?pageSize=20000&currentPage=1&sortDirection=DESC&sortFields=AcceptDate`)
     const petTotalList = await res.json()
     store.dispatch(setPetTotalList(petTotalList))
     store.dispatch(setFilterOptions(petTotalList))
