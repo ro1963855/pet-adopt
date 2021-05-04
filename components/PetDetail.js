@@ -1,6 +1,12 @@
 import Image from 'next/image'
 import PetDetailStyle from '../styles/components/PetDetail.module.scss'
 
+function diffDay(date1, date2) {
+  const diffTime = Math.abs(date2 - date1)
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  return diffDays
+}
+
 function PetDetail({info}) {
   return (
     <div className={`${PetDetailStyle.pet} card my-4`}>
@@ -18,7 +24,7 @@ function PetDetail({info}) {
             入所天數
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            {new Date(info.AcceptDate).getDate() - new Date().getDate() + 1} 天
+            { diffDay(new Date(info.AcceptDate), new Date()) } 天
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
