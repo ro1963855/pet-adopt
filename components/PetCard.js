@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import PetCardStyle from '../styles/components/PetCard.module.scss'
 
-function PetCard({info}) {
+function PetCard({pet}) {
   return (
     <div className={`${PetCardStyle.petCard} card`}>
       <div className={`${PetCardStyle.petCard__img__wrapper} bg-light`}>
         <Image
           className={`${PetCardStyle.petCard__img}`}
-          src={info.pic !== '' ? `https://asms.coa.gov.tw/AmlApp/Upload/pic/${info.pic.replace('.', '_org.')}` : '/svg/no_image_available.svg'}
+          src={pet.picture !== '' ? pet.picture : '/svg/no_image_available.svg'}
           alt="Pet Picture"
           layout="fill"
         />
@@ -18,7 +18,7 @@ function PetCard({info}) {
             品種
           </span>
           <span className={`${PetCardStyle.petCard__info__value}`}>
-            {info.BreedName}
+            {pet.breed.name}
           </span>
         </div>
         <div className={`${PetCardStyle.petCard__info}`}>
@@ -26,7 +26,7 @@ function PetCard({info}) {
             類別
           </span>
           <span className={`${PetCardStyle.petCard__info__value}`}>
-            {info.TypeIdName}
+            {pet.type.name}
           </span>
         </div>
         <div className={`${PetCardStyle.petCard__info}`}>
@@ -34,7 +34,7 @@ function PetCard({info}) {
             性別
           </span>
           <span className={`${PetCardStyle.petCard__info__value}`}>
-            {info.SexName}
+            {pet.sex.name}
           </span>
         </div>
         <div className={`${PetCardStyle.petCard__info}`}>
@@ -42,7 +42,7 @@ function PetCard({info}) {
             毛色
           </span>
           <span className={`${PetCardStyle.petCard__info__value}`}>
-            {info.CoatName}
+            {pet.coat.name}
           </span>
         </div>
         <div className={`${PetCardStyle.petCard__info}`}>
@@ -50,7 +50,7 @@ function PetCard({info}) {
             收容所
           </span>
           <span className={`${PetCardStyle.petCard__info__value}`}>
-            {info.ShelterName}
+            {pet.shelter.name}
           </span>
         </div>
       </section>

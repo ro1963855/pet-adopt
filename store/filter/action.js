@@ -35,9 +35,9 @@ export const setFilterOptions = (petTotalList) => (dispatch) => {
   const typeOptions = []
 
   petTotalList.forEach(pet => {
-    collectSingleOption(pet, shelterOptions, 'ShelterName')
-    collectSingleOption(pet, sexOptions, 'SexName')
-    collectMultipleOption(pet, typeOptions, 'TypeIdName', 'BreedName')
+    collectSingleOption(pet, shelterOptions, ['shelter', 'name'])
+    collectSingleOption(pet, sexOptions, ['sex', 'name'])
+    collectMultipleOption(pet, typeOptions, ['type', 'name'], ['breed', 'name'])
   })
 
   shelterOptions.sort(sortSingleOptions)

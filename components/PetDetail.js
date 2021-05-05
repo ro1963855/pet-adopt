@@ -7,13 +7,13 @@ function diffDay(date1, date2) {
   return diffDays
 }
 
-function PetDetail({info}) {
+function PetDetail({pet}) {
   return (
     <div className={`${PetDetailStyle.pet} card my-4`}>
       <div className={`${PetDetailStyle.petDetail__img__wrapper} bg-light`}>
         <Image
           className={`${PetDetailStyle.petDetail__img}`}
-          src={info.FrontImageName !== '' ? `https://asms.coa.gov.tw/AmlApp/Upload/Pic/${info.FrontImageName.replace('.', '_org.')}` : '/svg/no_image_available.svg'}
+          src={pet.picture !== '' ? pet.picture : '/svg/no_image_available.svg'}
           alt="Pet Picture"
           layout="fill"
         />
@@ -24,7 +24,7 @@ function PetDetail({info}) {
             入所天數
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            { diffDay(new Date(info.AcceptDate), new Date()) } 天
+            { diffDay(new Date(pet.acceptTime), new Date()) } 天
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
@@ -32,7 +32,7 @@ function PetDetail({info}) {
             進所原因
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            {info.ReasonName}
+            {pet.reason}
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
@@ -40,7 +40,7 @@ function PetDetail({info}) {
             狀態
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            {info.AdoptionName}
+            {pet.adoption.name}
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
@@ -48,7 +48,7 @@ function PetDetail({info}) {
             品種
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            {info.VarietyName}
+            {pet.breed.name}
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
@@ -56,7 +56,7 @@ function PetDetail({info}) {
             類別
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            {info.TypeIdName}
+            {pet.type.name}
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
@@ -64,7 +64,7 @@ function PetDetail({info}) {
             性別
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            {info.SexName}
+            {pet.sex.name}
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
@@ -72,7 +72,7 @@ function PetDetail({info}) {
             毛色
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            {info.CoatName}
+            {pet.coat.name}
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
@@ -80,7 +80,7 @@ function PetDetail({info}) {
             編號
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            {info.AcceptNum}
+            {pet.animalId}
           </span>
         </div>
         <div className={`${PetDetailStyle.petDetail__info}`}>
@@ -88,8 +88,8 @@ function PetDetail({info}) {
             收容所
           </span>
           <address className={`${PetDetailStyle.petDetail__info__value}`}>
-            <a href={info.link} target="_blank">
-              {info.ShelterName}
+            <a href={pet.link} target="_blank">
+              {pet.shelter.name}
             </a>
           </address>
         </div>
@@ -98,8 +98,8 @@ function PetDetail({info}) {
             收容所地址
           </span>
           <span className={`${PetDetailStyle.petDetail__info__value}`}>
-            <a href={`https://www.google.com.tw/maps/place/${info.Address}`} target="_blank">
-              {info.Address}
+            <a href={`https://www.google.com.tw/maps/place/${pet.shelter.address}`} target="_blank">
+              {pet.shelter.address}
             </a>
           </span>
         </div>
@@ -108,8 +108,8 @@ function PetDetail({info}) {
             收容所電話
           </span>
           <address className={`${PetDetailStyle.petDetail__info__value}`}>
-            <a href={`tel:${info.Tel}`}>
-              {info.Tel}
+            <a href={`tel:${pet.shelter.phone}`}>
+              {pet.shelter.phone}
             </a>
           </address>
         </div>
@@ -119,7 +119,7 @@ function PetDetail({info}) {
           </span>
           <span
             className={`${PetDetailStyle.petDetail__info__value}`}
-            dangerouslySetInnerHTML={{__html: info.Memo}}
+            dangerouslySetInnerHTML={{__html: pet.shelter.remark}}
           >
           </span>
         </div>

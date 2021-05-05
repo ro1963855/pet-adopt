@@ -14,15 +14,15 @@ function PetList({pet, filter}) {
     setPageSize(perPageNumber)
     let petTotalListFilter = [...petTotalList]
     if (shelterOptions.length !== 0) {
-      petTotalListFilter = petTotalListFilter.filter(pet => shelterOptions.findIndex((shelter) => shelter.value === pet.ShelterName) !== -1)
+      petTotalListFilter = petTotalListFilter.filter(pet => shelterOptions.findIndex((shelter) => shelter.value === pet.shelter.name) !== -1)
     }
 
     if (typeOptions.length !== 0) {
-      petTotalListFilter = petTotalListFilter.filter(pet => typeOptions.findIndex((type) => type.value === pet.BreedName) !== -1)
+      petTotalListFilter = petTotalListFilter.filter(pet => typeOptions.findIndex((type) => type.value === pet.breed.name) !== -1)
     }
 
     if (sexOptions.length !== 0) {
-      petTotalListFilter = petTotalListFilter.filter(pet => sexOptions.findIndex((sex) => sex.value === pet.SexName) !== -1)
+      petTotalListFilter = petTotalListFilter.filter(pet => sexOptions.findIndex((sex) => sex.value === pet.sex.name) !== -1)
     }
 
     return petTotalListFilter
@@ -54,20 +54,18 @@ function PetList({pet, filter}) {
     <section className="container petList">
       <div className={`${PetListStyle.petList__counter} mt-4`}>總共：{totalShowNumber}筆資料</div>
       <div className="row">
-        {petShowList.map((petInfo, index) => (
+        {petShowList.map((pet, index) => (
           <Link
             href={{
               pathname: '/pets',
               query: {
-                animalId: petInfo.AnimalId,
-                shelterId: petInfo.UserTag,
-                acceptId: petInfo.AcceptNum,
+                id: pet.id,
               },
             }}
-            key={petInfo.AnimalId}
+            key={pet.id}
           >
             <a className={`${index === Math.ceil(pageSize * 0.7) || petShowList.length - 1 === index ? 'petList__pet__middle': ''} col-6 col-md-4 col-lg-3 mt-4 text-decoration-none text-dark`}>
-              <PetCard info={petInfo}></PetCard>
+              <PetCard pet={pet}></PetCard>
             </a>
           </Link>
         ))}
